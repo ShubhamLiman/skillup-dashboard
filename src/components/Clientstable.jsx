@@ -6,7 +6,7 @@ function Clientstable() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://hubnex-backend-jade.vercel.app/skillup/api/client/clients"
+          "https://skillup-backend-iota.vercel.app/skillup/api/client/clients"
         ); // Replace with your API endpoint
         const data = await response.json();
         setClientData(data.clients);

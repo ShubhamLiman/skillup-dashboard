@@ -16,7 +16,7 @@ function Registerform() {
     };
     try {
       const response = await fetch(
-        "https://hubnex-backend-jade.vercel.app/skillup/api/admin/register",
+        "https://skillup-backend-iota.vercel.app/skillup/api/admin/register",
         {
           method: "POST",
           headers: {
