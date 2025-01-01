@@ -17,7 +17,7 @@ function LoginForm({ setLogin }) {
     };
     try {
       const response = await fetch(
-        "https://skillup-backend-iota.vercel.app/skillup/api/admin/login",
+        "https://skillup-backend-gamma.vercel.app/skillup/api/admin/login",
         {
           method: "POST",
           headers: {
@@ -28,10 +28,17 @@ function LoginForm({ setLogin }) {
       );
       const data = await response.json();
       console.log(data);
-
-      const user = { AdminId };
-      Cookies.set("user", JSON.stringify(user), { expires: 1 / 24 });
-      setLogin(user);
+      if (
+        data.message == "User not found" ||
+        data.message == "Incorrect password"
+      ) {
+        alert(data.message);
+        nav("/login");
+      } else {
+        const user = data.token;
+        Cookies.set("jwttoken", data.token, { expires: 1 / 24 });
+        setLogin(user);
+      }
     } catch (err) {
       alert("Incorrect admin id or password");
     }

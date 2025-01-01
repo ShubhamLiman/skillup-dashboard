@@ -14,10 +14,9 @@ function App() {
   };
 
   useEffect(() => {
-    const userCookie = Cookies.get("user");
+    const userCookie = Cookies.get("jwttoken");
     if (userCookie) {
-      setLogin(JSON.parse(userCookie));
-      console.log("userCookie", userCookie);
+      setLogin(userCookie);
     }
   }, []);
 

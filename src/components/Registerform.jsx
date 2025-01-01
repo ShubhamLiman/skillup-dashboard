@@ -16,7 +16,7 @@ function Registerform() {
     };
     try {
       const response = await fetch(
-        "https://skillup-backend-iota.vercel.app/skillup/api/admin/register",
+        "https://skillup-backend-gamma.vercel.app/skillup/api/admin/register",
         {
           method: "POST",
           headers: {
@@ -26,9 +26,16 @@ function Registerform() {
         }
       );
       const data = await response.json();
-      console.log(data);
-      alert(`please copy your admin id - ${data.adminId}`);
-      nav("/login");
+      if (data.error) {
+        alert(data.error);
+        return;
+      } else {
+        console.log(data);
+        alert(data.message);
+        alert(`please copy your admin id - ${data.adminId}`);
+        // alert(`please copy your admin id - ${data.adminId}`);
+        nav("/login");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +72,7 @@ function Registerform() {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
-                type="text"
+                type="password"
                 placeholder="Password"
                 ref={passwordRef}
               />

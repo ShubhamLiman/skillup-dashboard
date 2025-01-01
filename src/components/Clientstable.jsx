@@ -1,12 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 function Clientstable() {
   const [clientData, setClientData] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
+        const token = Cookies.get("jwttoken");
         const response = await fetch(
-          "https://skillup-backend-iota.vercel.app/skillup/api/client/clients"
+          "https://skillup-backend-gamma.vercel.app/skillup/api/client/clients",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
         ); // Replace with your API endpoint
         const data = await response.json();
         setClientData(data.clients);

@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { Outlet, NavLink } from "react-router-dom";
 function Header({ login, setLogin, isEmpty }) {
   const handleLogout = () => {
-    Cookies.remove("user");
+    Cookies.remove("jwttoken");
     setLogin({});
   };
   return (
